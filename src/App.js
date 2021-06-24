@@ -2,6 +2,7 @@ import React from 'react';
 import ISO6391 from 'iso-639-1';
 import { Translator, Translate } from 'react-auto-translate';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import {es, fr, zhTW} from 'date-fns/locale';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
@@ -11,6 +12,9 @@ import './App.scss';
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
+  'es': es,
+  'fr': fr,
+  'zh-TW': zhTW,
 };
 const localizer = dateFnsLocalizer({
   format,
@@ -120,6 +124,7 @@ class App extends React.Component {
         </Translator>
         <Calendar
           localizer={localizer}
+          culture={this.state.currLanguageCode}
           events={myEventsList}
           style={{ height: 500 }}
         />
