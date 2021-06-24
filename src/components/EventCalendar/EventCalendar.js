@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
-import {es, fr, zhTW} from 'date-fns/locale';
+import * as Locales from 'date-fns/locale';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
@@ -8,10 +8,11 @@ import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const locales = {
-  'en-US': require('date-fns/locale/en-US'),
-  'es': es,
-  'fr': fr,
-  'zh-TW': zhTW,
+  'en': Locales.enUS,
+  'es': Locales.es,
+  'fr': Locales.fr,
+  'ja': Locales.ja,
+  'zh': Locales.zhCN,
 };
 const localizer = dateFnsLocalizer({
   format,
@@ -53,7 +54,7 @@ const myEventsList = [
 
 class EventCalendar extends React.Component {
   render() {
-    console.log(this.props);
+    //console.log(this.props.currLanguageCode);
     return(
       <Calendar
         localizer={localizer}
