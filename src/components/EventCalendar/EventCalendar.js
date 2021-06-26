@@ -113,13 +113,41 @@ const myEventsList = [
 ];
 
 class EventCalendar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { events: myEventsList };
+  }
+
+  handleSelect = ({ start, end }) => {
+    const title = window.prompt('new event name')
+    if (title)
+      this.setState({
+        events: [
+          ...this.state.events,
+          {
+            title,
+            start,
+            end,
+          },
+        ],
+      })
+  }
+
+  handleClick = (event) => {
+    if(window.confirm('delete ' + event.title + '?')) {
+      this.setState({ events: this.state.events.filter(e => !(e === event)) });
+    }
+  }
+
   render() {
-    //console.log(this.props.currLanguageCode);
     return(
       <Calendar
+        selectable
         localizer={localizer}
         culture={this.props.currLanguageCode}
-        events={myEventsList}
+        events={this.state.events}
+        onSelectEvent={this.handleClick}
+        onSelectSlot={this.handleSelect}
         style={{ height: 500 }}
       />
     );
