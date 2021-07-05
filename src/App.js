@@ -2,6 +2,9 @@ import React from 'react';
 import ISO6391 from 'iso-639-1';
 import { Translator, Translate } from 'react-auto-translate';
 import EventCalendar from './components/EventCalendar/EventCalendar';
+import { Container, Row, Col } from 'reactstrap';
+import NavigationColumn from './components/NavigationColumn/NavigationColumn';
+import CallReport from './components/CallReport/CallReport';
 import './App.scss';
 
 class App extends React.Component {
@@ -50,7 +53,20 @@ class App extends React.Component {
     };
 
     return (
-      <div className='App'>
+      <Container className="App" fluid>
+        <Row className="app-row">
+          <Col xs="2" className="navigation-column">
+            <NavigationColumn/>
+          </Col>
+          <Col className="content">
+            <CallReport/>
+          </Col>
+        </Row>
+      
+
+
+
+      {/*
         <select
           className='languageDropdown'
           value={currLanguage}
@@ -72,8 +88,9 @@ class App extends React.Component {
             <Translate>Hello world! Current app implementation is testing translation features. Click the dropdown to select a supported language.</Translate>
           </div>
         </Translator>
-        <EventCalendar currLanguageCode={currLanguageCode} />
-      </div>
+        */}
+      {/*<EventCalendar currLanguageCode={currLanguageCode} /> */}
+      </Container>
     );
   }
 }

@@ -1,2 +1,16 @@
+@import "~bootstrap/scss/bootstrap";
+
 .App {
+  height: 100%;
+  .app-row {
+    height: 100%;
+    .navigation-column {
+      background-color: #8CBAFF;
+      padding-top: 40px;
+    }
+    .content {
+      background-color: #F4F4F4;
+      padding-top: 40px;
+    }
+  }
 }

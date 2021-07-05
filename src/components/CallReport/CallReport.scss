@@ -1,0 +1,55 @@
+.CallReport {
+  .header {
+    margin-bottom: 10px;
+
+    .title {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .submit-report {
+      text-align: right;
+
+      .submit-report-button {
+        background-color: #8CBAFF;
+        color: black;
+
+        // TODO why tf  does this not remove the border around button
+        .btn .btn-secondary {
+          border-color: #8CBAFF;
+        }
+      }
+    }
+  }
+
+  .report-row {
+    margin-bottom: 10px;
+
+    .time-container {
+      .time-flex-input {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .now-time-button {
+        margin-left: 5px;
+        background-color: #B4DCF2; 
+        color: black;
+      }
+    }
+
+    .caller-information {
+      background-color: #7FC7EF;
+      padding: 10px;
+      .phone-number-flex-input {
+        display: flex;
+        flex-direction: row;
+
+        .phone-text-input {
+          width: 100px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
