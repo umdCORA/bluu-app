@@ -13,9 +13,11 @@
     "react-auto-translate": "^0.0.6",
     "react-big-calendar": "^0.33.5",
     "react-bootstrap": "^1.6.1",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.14.0",
+    "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
     "reactstrap": "^8.9.0",
+    "redux-actions": "^2.6.5",
     "sass": "^1.35.1",
     "web-vitals": "^1.0.1"
   },

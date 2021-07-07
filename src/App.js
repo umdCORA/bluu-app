@@ -1,10 +1,11 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
-import { Translator, Translate } from 'react-auto-translate';
-import EventCalendar from './components/EventCalendar/EventCalendar';
+import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
-import NavigationColumn from './components/NavigationColumn/NavigationColumn';
+// import { Translator, Translate } from 'react-auto-translate';
 import CallReport from './components/CallReport/CallReport';
+// import EventCalendar from './components/EventCalendar/EventCalendar';
+import NavigationColumn from './components/NavigationColumn/NavigationColumn';
 import './App.scss';
 
 class App extends React.Component {
@@ -95,4 +96,13 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const ConnectedApp = connect(state => ({
+  workerName: state.workerName,
+  inputDate: state.inputDate,
+  startTime: state.startTime,
+  endTime: state.endTime,
+  callerLocation: state.callerLocation,
+  emsDispatched: state.emsDispatched,
+}))(App);
+
+export default ConnectedApp;

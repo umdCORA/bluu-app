@@ -13,11 +13,12 @@
       .submit-report-button {
         background-color: #8CBAFF;
         color: black;
+      }
 
-        // TODO why tf  does this not remove the border around button
-        .btn .btn-secondary {
-          border-color: #8CBAFF;
-        }
+      .submit-report-button:active {
+        background-color: #8CBAFF;
+        color: black;
+        outline: none;
       }
     }
   }
@@ -25,31 +26,12 @@
   .report-row {
     margin-bottom: 10px;
 
-    .time-container {
-      .time-flex-input {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .now-time-button {
-        margin-left: 5px;
-        background-color: #B4DCF2; 
-        color: black;
-      }
+    .information-col {
+      height: 615px;  
     }
 
-    .caller-information {
-      background-color: #7FC7EF;
-      padding: 10px;
-      .phone-number-flex-input {
-        display: flex;
-        flex-direction: row;
-
-        .phone-text-input {
-          width: 100px;
-          margin-right: 10px;
-        }
-      }
+    .protocol-col {
+      height: 615px;  
     }
   }
 }
