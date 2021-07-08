@@ -8,6 +8,7 @@ import {
 
 import InformationForm from './InformationForm';
 import ProtocolForm from './ProtocolForm';
+import CallTools from './CallTools';
 import './CallReport.scss';
 
 class CallReport extends React.Component {
@@ -60,7 +61,7 @@ class CallReport extends React.Component {
             <Card>
               <CardBody>
                 <CardTitle tag="h5"> Tools </CardTitle>
-                <CardText> Metronome </CardText>
+                <CallTools />
               </CardBody>
             </Card>
           </Col>
