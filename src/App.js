@@ -174,6 +174,7 @@ class App extends React.Component {
             <Translate>Hello world! Current app implementation is testing translation features. Click the dropdown to select a supported language.</Translate>
           </div>
         </Translator>
+<<<<<<< HEAD
         */}
       {/*<EventCalendar currLanguageCode={currLanguageCode} /> */}
       </Container>
