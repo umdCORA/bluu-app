@@ -1,0 +1,37 @@
+.CallReport {
+  .header {
+    margin-bottom: 10px;
+
+    .title {
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .submit-report {
+      text-align: right;
+
+      .submit-report-button {
+        background-color: #8CBAFF;
+        color: black;
+      }
+
+      .submit-report-button:active {
+        background-color: #8CBAFF;
+        color: black;
+        outline: none;
+      }
+    }
+  }
+
+  .report-row {
+    margin-bottom: 10px;
+
+    .information-col {
+      height: 615px;  
+    }
+
+    .protocol-col {
+      height: 615px;  
+    }
+  }
+}
