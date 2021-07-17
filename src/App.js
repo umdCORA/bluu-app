@@ -1,6 +1,7 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
 import { Translator, Translate } from 'react-auto-translate';
+import EventCalendar from './components/EventCalendar/EventCalendar';
 import './App.scss';
 
 class App extends React.Component {
@@ -71,6 +72,7 @@ class App extends React.Component {
             <Translate>Hello world! Current app implementation is testing translation features. Click the dropdown to select a supported language.</Translate>
           </div>
         </Translator>
+        {/*<EventCalendar currLanguageCode={currLanguageCode} />*/}
       </div>
     );
   }
