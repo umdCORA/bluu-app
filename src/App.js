@@ -1,11 +1,23 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap';
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
+import { Button, Container, Row, Col } from 'reactstrap';
 // import { Translator, Translate } from 'react-auto-translate';
 import CallReport from './components/CallReport/CallReport';
 // import EventCalendar from './components/EventCalendar/EventCalendar';
-import NavigationColumn from './components/NavigationColumn/NavigationColumn';
+import { 
+  DASHBOARD_PAGE,
+  REPORT_PAGE,
+  TRAINING_PAGE,
+  CALENDAR_PAGE,
+  CELEBRATION_PAGE,
+  STAFF_PAGE,
+  TCPR_PAGE,
+  AED_PAGE,
+  SETTINGS_PAGE,
+} from './utils/Constants';
+import bluuLogo from './assets/bluu-logo.jpeg';
 import './App.scss';
 
 class App extends React.Component {
@@ -15,6 +27,7 @@ class App extends React.Component {
       prevLanguageCode: 'en',   // previous selected language code (used by react-auto-translate library)
       currLanguageCode: 'en',   // current selected language code, defaults to English
       currLanguage: 'English',  // current selected language, defaults to English
+      currPage: DASHBOARD_PAGE,
     };
   }
 
@@ -28,11 +41,22 @@ class App extends React.Component {
     });
   }
 
+  renderContent = () => {
+    const { currPage } = this.state;
+    switch(currPage) {
+      case REPORT_PAGE:
+        return <CallReport/>
+      default:
+        return <div> WIP </div>
+    }
+  }
+
   render() {
     const {
       prevLanguageCode,
       currLanguageCode,
       currLanguage,
+      currPage,
     } = this.state;
 
     // all ISO-638-1 languages in their native language. Parsing below
@@ -56,11 +80,72 @@ class App extends React.Component {
     return (
       <Container className="App" fluid>
         <Row className="app-row">
-          <Col xs="2" className="navigation-column">
-            <NavigationColumn/>
-          </Col>
+          <ProSidebar>
+            <SidebarHeader>
+              <span>Code Bluu</span>
+              <img src={bluuLogo} width="90" height="auto"/>
+            </SidebarHeader>
+            <SidebarContent>
+              <Menu iconShape="square">
+                <MenuItem 
+                  active={currPage===DASHBOARD_PAGE}
+                  onClick={() => this.setState({currPage: DASHBOARD_PAGE})}
+                > 
+                  Dashboard 
+                </MenuItem>
+                <MenuItem
+                  active={currPage === REPORT_PAGE}
+                  onClick={() => this.setState({currPage: REPORT_PAGE})}
+                >
+                  Make a Report
+                </MenuItem>
+                <MenuItem
+                  active={currPage === TRAINING_PAGE}
+                  onClick={() => this.setState({currPage: TRAINING_PAGE})}
+                >
+                  Training
+                </MenuItem>
+                <MenuItem 
+                  active={currPage === CALENDAR_PAGE}
+                  onClick={() => this.setState({currPage: CALENDAR_PAGE})}
+                > 
+                  Calendar
+                </MenuItem>
+                <MenuItem
+                  active={currPage === CELEBRATION_PAGE}
+                  onClick={() => this.setState({currPage: CELEBRATION_PAGE})}
+                >
+                  Celebration Board
+                </MenuItem>
+                <MenuItem
+                  active={currPage === STAFF_PAGE}
+                  onClick={() => this.setState({currPage: STAFF_PAGE})}
+                >
+                  Staff 
+                </MenuItem>
+                <MenuItem
+                  active={currPage === TCPR_PAGE}
+                  onClick={() => this.setState({currPage: TCPR_PAGE})}
+                > 
+                  tCPR 
+                </MenuItem>
+                <MenuItem
+                  active={currPage === AED_PAGE}
+                  onClick={() => this.setState({currPage: AED_PAGE})}
+                > 
+                  AED Locator 
+                </MenuItem>
+                <MenuItem
+                  active={currPage === SETTINGS_PAGE}
+                  onClick={() => this.setState({currPage: SETTINGS_PAGE})}
+                >
+                  Settings
+                </MenuItem>
+              </Menu>
+            </SidebarContent>
+            </ProSidebar>
           <Col className="content">
-            <CallReport/>
+            {this.renderContent()}
           </Col>
         </Row>
       

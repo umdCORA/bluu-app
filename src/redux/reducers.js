@@ -34,10 +34,9 @@ export const endTime = identityReducer(SET_END_TIME, '');
 export const callerPhoneNumber = identityReducer(SET_CALLER_PHONE_NUMBER, defaultPhoneNumber);
 export const callerLocation = identityReducer(SET_CALLER_LOCATION, '');
 export const emsDispatched = identityReducer(SET_EMS_DISPATCHED, '');
-
 export const emergencyType = identityReducer(SET_EMERGENCY_TYPE, '');
 export const emergencyAddress = identityReducer(SET_EMERGENCY_ADDRESS, '');
 export const victimAge = identityReducer(SET_VICTIM_AGE, '');
-export const isVictimBreathing = identityReducer(SET_IS_VICTIM_BREATHING, '');
+export const isVictimBreathing = identityReducer(SET_IS_VICTIM_BREATHING, false);
 export const victimBreathingDescription = identityReducer(SET_VICTIM_BREATHING_DESCRIPTION, '');
-export const isVictimChestRising = identityReducer(SET_IS_VICTIM_CHEST_RISING, '');
+export const isVictimChestRising = identityReducer(SET_IS_VICTIM_CHEST_RISING, false);

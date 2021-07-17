@@ -175,7 +175,7 @@ class InformationForm extends React.Component {
                       type="text"
                       name="emsDispatched"
                       id="emsDispatched"
-                      placeholder="Yes"
+                      placeholder="111"
                       value={emsDispatched}
                       onChange={(e) => dispatch(setEmsDispatched(e.target.value))}
                     />

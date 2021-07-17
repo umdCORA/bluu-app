@@ -6,6 +6,7 @@ import {
   Form, FormGroup, Label, Input,
 } from 'reactstrap';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import {
   setEmergencyType,
   setEmergencyAddress,
@@ -28,10 +29,6 @@ class ProtocolForm extends React.Component {
       isVictimChestRising,
     } = this.props;
 
-    const radios = [
-      { name: 'Yes', value: true },
-      { name: 'No', value: false },
-    ];
     return (
       <Card className="ProtocolFormCard">
         <CardBody>
@@ -72,19 +69,26 @@ class ProtocolForm extends React.Component {
             </FormGroup>
             <FormGroup className="is-victim-breathing-form-group">
               <Label for="isVictimBreathing"> Is he/she breathing normally? </Label>
-              <ButtonGroup className="is-victim-breathing-button-group" toggle>
-                {radios.map((radio, idx) => (
+              <ToggleButtonGroup
+                  name="is-victim-breathing-button-group"
+                  className="is-victim-breathing-button-group"
+                  defaultValue={isVictimBreathing}
+              >
                   <ToggleButton
-                    key={idx}
-                    type="radio"
-                    variant="secondary"
-                    name="radio"
-                    value={radio.value}
+                    className="is-victim-breathing-button"  
+                    value={true}
+                    onClick={() => dispatch(setIsVictimBreathing(true))}
                   >
-                    {radio.name}
+                    Yes
                   </ToggleButton>
-                ))}
-              </ButtonGroup>
+                  <ToggleButton
+                    className="is-victim-breathing-button"          
+                    value={false}
+                    onClick={() => dispatch(setIsVictimBreathing(false))}
+                  > 
+                    No 
+                  </ToggleButton>
+              </ToggleButtonGroup>
             </FormGroup>
             <FormGroup>
               <Label for="victimBreathingDescription"> Can you describe the breathing sounds? </Label>
@@ -97,14 +101,30 @@ class ProtocolForm extends React.Component {
                 onChange={(e) => dispatch(setVictimBreathingDescription(e.target.value))}
               />
             </FormGroup>
-            <FormGroup>
+            <FormGroup className="is-victim-chest-rising-form-group">
               <Label for="isVictimChestRising"> Can you see the chest rising? </Label>
-              <Input
-                type="text"
-                name="isVictimChestRising"
-                id="isVictimChestRising"
-                placeholder="No"
-              />
+              <ToggleButtonGroup
+                  name="is-victim-chest-rising-button-group"
+                  className="is-victim-chest-rising-button-group"
+                  defaultValue={isVictimChestRising}
+              >
+                  <ToggleButton
+                    className="is-victim-chest-rising-button"  
+                    checked={isVictimChestRising}
+                    value={true}
+                    onClick={() => dispatch(setIsVictimChestRising(true))}
+                  >
+                    Yes
+                  </ToggleButton>
+                  <ToggleButton
+                    className="is-victim-chest-rising-button"  
+                    checked={!isVictimChestRising}
+                    value={false}
+                    onClick={() => dispatch(setIsVictimChestRising(false))}
+                  > 
+                    No 
+                  </ToggleButton>
+              </ToggleButtonGroup>
             </FormGroup>
             <div> Can you put your phone next to his/her mouth so I can hear him/her breathing? </div>
 

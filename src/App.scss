@@ -1,12 +1,31 @@
 @import "~bootstrap/scss/bootstrap";
+$sidebar-bg-color: #8CBAFF;
+$sidebar-color: black;
+$highlight-color: black;
+@import "~react-pro-sidebar/dist/scss/styles.scss";
 
 .App {
   height: 100%;
   .app-row {
     height: 100%;
-    .navigation-column {
-      background-color: #8CBAFF;
-      padding-top: 40px;
+    .pro-sidebar-layout {
+      .pro-sidebar-header {
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        background-color: white;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .pro-sidebar-content {
+        .pro-menu {
+          padding-right: 50px;
+          padding-left: 20px;
+          .active {
+            background-color: white;
+          }
+        }
+      }
     }
     .content {
       background-color: #F4F4F4;
@@ -14,3 +33,4 @@
     }
   }
 }
+
