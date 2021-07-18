@@ -6,6 +6,7 @@ import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './EventCalendar.scss';
 
 const locales = {
   "af": Locales.af,
@@ -85,30 +86,35 @@ const localizer = dateFnsLocalizer({
 const myEventsList = [
   {
     title: 'My first event',
-    start: new Date(2021, 5, 22),
-    end: new Date(2021, 5, 28),
+    start: new Date(2021, 6, 22),
+    end: new Date(2021, 6, 28),
+    class: 'personal',
   },
   {
     title: 'My second event',
     allDay: true,
-    start: new Date(2021, 5, 22),
-    end: new Date(2021, 5, 23),
+    start: new Date(2021, 6, 22),
+    end: new Date(2021, 6, 23),
+    class: 'personal',
   },
   {
     title: 'My third event',
     allDay: false,
-    start: new Date(2021, 5, 12, 8),
-    end: new Date(2021, 5, 12, 12),
+    start: new Date(2021, 6, 12, 8),
+    end: new Date(2021, 6, 12, 12),
+    class: 'personal',
   },
   {
     title: 'special',
     start: new Date(),
     end: new Date(),
+    class: 'important',
   },
   {
     title: 'extra',
-    start: new Date(2021, 5, 18),
-    end: new Date(2021, 5, 18),
+    start: new Date(2021, 6, 18),
+    end: new Date(2021, 6, 18),
+    class: 'info',
   },
 ];
 
@@ -139,6 +145,10 @@ class EventCalendar extends React.Component {
     }
   }
 
+  eventClassForward = (event, _start, _end, _isSelected) => {
+    return {className: event.class}
+  }
+
   render() {
     return(
       <Calendar
@@ -148,6 +158,7 @@ class EventCalendar extends React.Component {
         events={this.state.events}
         onSelectEvent={this.handleClick}
         onSelectSlot={this.handleSelect}
+        eventPropGetter={this.eventClassForward}
         style={{ height: 500 }}
       />
     );
