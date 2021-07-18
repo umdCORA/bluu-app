@@ -5,6 +5,7 @@ import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from 'react
 import { Button, Container, Row, Col } from 'reactstrap';
 // import { Translator, Translate } from 'react-auto-translate';
 import CallReport from './components/CallReport/CallReport';
+import TrainingModule from './components/TrainingModule/TrainingModule'
 // import EventCalendar from './components/EventCalendar/EventCalendar';
 import { 
   DASHBOARD_PAGE,
@@ -46,6 +47,8 @@ class App extends React.Component {
     switch(currPage) {
       case REPORT_PAGE:
         return <CallReport/>
+      case TRAINING_PAGE:
+        return <TrainingModule/>
       default:
         return <div> WIP </div>
     }
@@ -174,7 +177,6 @@ class App extends React.Component {
             <Translate>Hello world! Current app implementation is testing translation features. Click the dropdown to select a supported language.</Translate>
           </div>
         </Translator>
-<<<<<<< HEAD
         */}
       {/*<EventCalendar currLanguageCode={currLanguageCode} /> */}
       </Container>
