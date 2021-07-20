@@ -179,11 +179,11 @@ class EventCalendar extends React.Component {
           <Row>
             <Col xs="auto">
               <Row><h3>Trainings</h3></Row>
-              <Row><span className='cpr-simulation'>CPR Training Simulations</span></Row>
-              <Row><span className='in-person'>In-Person Trainings</span></Row>
+              <Row><div class='box cpr-simulation'/>CPR Training Simulations</Row>
+              <Row><div class='box in-person'/>In-Person Trainings</Row>
               <Row><h3>Meetings</h3></Row>
-              <Row><span className='cpr-simulation'>CPR Training Simulations</span></Row>
-              <Row><span className='in-person'>In-Person Trainings</span></Row>
+              <Row><div class='box cpr-simulation'/>CPR Training Simulations</Row>
+              <Row><div class='box in-person'/>In-Person Trainings</Row>
             </Col>
             <Col>
               <Row><h3>People</h3></Row>
