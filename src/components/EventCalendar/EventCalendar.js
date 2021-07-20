@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import * as Locales from 'date-fns/locale';
 import format from 'date-fns/format';
@@ -82,46 +83,57 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 });
+
+const people = ['kevin', 'michael', 'anna', 'arden', 'jason'];
+
 // javascript indexes months 0-11
 const myEventsList = [
   {
-    title: 'My first event',
+    title: 'Testevent KM',
     start: new Date(2021, 6, 22),
     end: new Date(2021, 6, 28),
-    class: 'personal',
+    attendees: ['kevin', 'michael'],
+    class: 'cpr-simulation',
   },
   {
-    title: 'My second event',
+    title: 'Testevent KAZ',
     allDay: true,
     start: new Date(2021, 6, 22),
     end: new Date(2021, 6, 23),
-    class: 'personal',
+    attendees: ['kevin', 'anna', 'arden'],
+    class: 'cpr-simulation',
   },
   {
-    title: 'My third event',
+    title: 'Testevent MAJ',
     allDay: false,
     start: new Date(2021, 6, 12, 8),
     end: new Date(2021, 6, 12, 12),
-    class: 'personal',
+    attendees: ['michael', 'anna', 'jason'],
+    class: 'in-person',
   },
   {
-    title: 'special',
+    title: 'Testevent All',
     start: new Date(),
     end: new Date(),
-    class: 'important',
+    attendees: ['kevin', 'michael', 'anna', 'arden', 'jason'],
+    class: 'cpr-simulation',
   },
   {
-    title: 'extra',
+    title: 'Testevent Z',
     start: new Date(2021, 6, 18),
     end: new Date(2021, 6, 18),
-    class: 'info',
+    attendees: ['arden'],
+    class: 'in-person',
   },
 ];
 
 class EventCalendar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { events: myEventsList };
+    this.state = {
+      events: myEventsList,
+      selectedPeople: [],
+    };
   }
 
   handleSelect = ({ start, end }) => {
@@ -145,22 +157,53 @@ class EventCalendar extends React.Component {
     }
   }
 
-  eventClassForward = (event, _start, _end, _isSelected) => {
-    return {className: event.class}
+  eventDisplay = (event, _start, _end, _isSelected) => {
+    if(event.attendees.filter(val => this.state.selectedPeople.includes(val)).length)
+      return {className: event.class}
+    return {style: {display: 'none'}}
+  }
+
+  peopleSelect = (person, checked) => {
+    if(checked) {
+      this.setState({ selectedPeople: this.state.selectedPeople.concat(person) });
+    } else {
+      this.setState({ selectedPeople: this.state.selectedPeople.filter(val => val !== person) });
+    }
   }
 
   render() {
     return(
-      <Calendar
-        selectable
-        localizer={localizer}
-        culture={this.props.currLanguageCode}
-        events={this.state.events}
-        onSelectEvent={this.handleClick}
-        onSelectSlot={this.handleSelect}
-        eventPropGetter={this.eventClassForward}
-        style={{ height: 500 }}
-      />
+      <>
+        <h1>Calendar</h1>
+        <Container fluid>
+          <Row>
+            <Col xs="auto">
+              <Row><h3>Trainings</h3></Row>
+              <Row><span className='cpr-simulation'>CPR Training Simulations</span></Row>
+              <Row><span className='in-person'>In-Person Trainings</span></Row>
+              <Row><h3>Meetings</h3></Row>
+              <Row><span className='cpr-simulation'>CPR Training Simulations</span></Row>
+              <Row><span className='in-person'>In-Person Trainings</span></Row>
+            </Col>
+            <Col>
+              <Row><h3>People</h3></Row>
+              <Form.Group>
+                {people.map(p => <Form.Check type="checkbox" label={p} onChange={e => this.peopleSelect(p, e.target.checked)} />)}
+              </Form.Group>
+            </Col>
+          </Row>
+        </Container>
+        <Calendar
+          selectable
+          localizer={localizer}
+          culture={this.props.currLanguageCode}
+          events={this.state.events}
+          onSelectEvent={this.handleClick}
+          onSelectSlot={this.handleSelect}
+          eventPropGetter={this.eventDisplay}
+          style={{ height: '100%' }}
+        />
+      </>
     );
   }
 }
