@@ -89,6 +89,7 @@ const TrainingModule = () => {
             src="LMAO.mp3"
             type="audio/mpeg"
             showJumpControls={false}
+            volume={0.1}
 
             onPlay={e => console.log("onPlay")}
 
