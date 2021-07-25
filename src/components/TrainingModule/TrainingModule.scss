@@ -1,5 +1,27 @@
-.TrainingModule {
-  height: 100%;  
+.training-module {
+  height: 100%;
+    .header {
+      margin-bottom: 10px;
+      
+      .title {
+        font-weight: bold;
+        font-size: 24px;
+      }
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .training-prompt-row {
+      margin-bottom: 10px;
+
+      .training-col {
+        height: 615px;
+      }
+    }
+
     .card-body {
       overflow-y: auto;
 
