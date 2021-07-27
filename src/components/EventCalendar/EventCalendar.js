@@ -158,7 +158,7 @@ class EventCalendar extends React.Component {
   }
 
   eventDisplay = (event, _start, _end, _isSelected) => {
-    if(event.attendees.filter(val => this.state.selectedPeople.includes(val)).length)
+    if(event.attendees?.filter(val => this.state.selectedPeople.includes(val)).length)
       return {className: event.class}
     return {style: {display: 'none'}}
   }
