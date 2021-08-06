@@ -1,13 +1,11 @@
 import { combineReducers, createStore } from 'redux';
 
 import {
-  workerName,
-  inputDate,
-  startTime,
-  endTime,
+  accountType,
   callerPhoneNumber,
   callerLocation,
   emsDispatched,
+  callInformationNotes,
   emergencyType,
   emergencyAddress,
   victimAge,
@@ -17,13 +15,11 @@ import {
 } from './reducers.js';
 
 const rootReducer = combineReducers({
-  workerName,
-  inputDate,
-  startTime,
-  endTime,
+  accountType,
   callerPhoneNumber,
   callerLocation,
   emsDispatched,
+  callInformationNotes,
   emergencyType,
   emergencyAddress,
   victimAge,
