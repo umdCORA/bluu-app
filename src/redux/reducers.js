@@ -1,13 +1,14 @@
 import { handleActions } from 'redux-actions';
+import {
+  OPERATOR_ACCT,
+} from '../utils/Constants'
 
 import {
-  SET_WORKER_NAME,
-  SET_INPUT_DATE,
-  SET_START_TIME,
-  SET_END_TIME,
+  SET_ACCOUNT_TYPE,
   SET_CALLER_PHONE_NUMBER,
   SET_CALLER_LOCATION,
   SET_EMS_DISPATCHED,
+  SET_CALL_INFORMATION_NOTES,
   SET_EMERGENCY_TYPE,
   SET_EMERGENCY_ADDRESS,
   SET_VICTIM_AGE,
@@ -18,7 +19,7 @@ import {
 
 
 const identityReducer = (actionName, initialState) => handleActions({
-  [actionName]: (state, action) => action.payload
+  [actionName]: (_, action) => action.payload
 }, initialState);
 
 const defaultPhoneNumber = {
@@ -27,13 +28,11 @@ const defaultPhoneNumber = {
   lineNumber: '',
 };
 
-export const workerName = identityReducer(SET_WORKER_NAME, '');
-export const inputDate = identityReducer(SET_INPUT_DATE, '');
-export const startTime = identityReducer(SET_START_TIME, '');
-export const endTime = identityReducer(SET_END_TIME, '');
+export const accountType = identityReducer(SET_ACCOUNT_TYPE, OPERATOR_ACCT);
 export const callerPhoneNumber = identityReducer(SET_CALLER_PHONE_NUMBER, defaultPhoneNumber);
 export const callerLocation = identityReducer(SET_CALLER_LOCATION, '');
 export const emsDispatched = identityReducer(SET_EMS_DISPATCHED, '');
+export const callInformationNotes = identityReducer(SET_CALL_INFORMATION_NOTES, '');
 export const emergencyType = identityReducer(SET_EMERGENCY_TYPE, '');
 export const emergencyAddress = identityReducer(SET_EMERGENCY_ADDRESS, '');
 export const victimAge = identityReducer(SET_VICTIM_AGE, '');

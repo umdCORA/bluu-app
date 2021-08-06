@@ -1,5 +1,13 @@
 .CallReport {
-  .header {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .container-fluid {
+    height: 100%;
+  }
+
+  .header-row {
     margin-bottom: 10px;
 
     .title {
@@ -24,14 +32,12 @@
   }
 
   .report-row {
-    margin-bottom: 10px;
-
-    .information-col {
-      height: 615px;  
-    }
-
-    .protocol-col {
-      height: 615px;  
+    height: 100%;
+    display: flex;
+    flex: 1;
+    .col {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

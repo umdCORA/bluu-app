@@ -140,6 +140,7 @@ class ProtocolForm extends React.Component {
               Can you hear me?
             </div>
             <br/>
+      {/*
             <div>
               Listen carefully. Place the patient FLAT on his/her back on the floor and KNEEL by his/her side.
             </div>
@@ -151,7 +152,7 @@ class ProtocolForm extends React.Component {
             <div>
               WITH YOUR ARMS STRAIGHT; PUSH DOWN HARD AND FAST WITH THE HEELS OF YOUR HANDS. Let the chest COME ALL THE WAY UP between pumps. Count together with me 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 .... keep going.
             </div>
-            <br/>
+            <br/> */}
           </Form>
         </CardBody>
       </Card>

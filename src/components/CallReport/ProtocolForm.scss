@@ -1,40 +1,40 @@
 .ProtocolFormCard {
   height: 100%;
+  overflow-y: auto;
 
   .card-body {
-    overflow-y: auto;
+    .protocol-form {
+      height: 0px; // required so form doesn't bleed across divs
+      
+      .is-victim-breathing-form-group {
+        display: flex;
+        flex-direction: column;
 
-    // slightly hacky to fix form scroll
-    max-height: 600px;
+        .is-victim-breathing-button-group {
+          display: inline;
 
-    .is-victim-breathing-form-group {
-      display: flex;
-      flex-direction: column;
-
-      .is-victim-breathing-button-group {
-        display: inline;
-
-        .is-victim-breathing-button {
-          margin-right: 5px;
-          color: black;
-          background-color: white;
-          border-color: black;
+          .is-victim-breathing-button {
+            margin-right: 5px;
+            color: black;
+            background-color: white;
+            border-color: black;
+          }
         }
       }
-    }
 
-    .is-victim-chest-rising-form-group {
-      display: flex;
-      flex-direction: column;
+      .is-victim-chest-rising-form-group {
+        display: flex;
+        flex-direction: column;
 
-      .is-victim-chest-rising-button-group {
-        display: inline;
+        .is-victim-chest-rising-button-group {
+          display: inline;
 
-        .is-victim-chest-rising-button {
-          margin-right: 5px;
-          color: black;
-          background-color: white;
-          border-color: black;
+          .is-victim-chest-rising-button {
+            margin-right: 5px;
+            color: black;
+            background-color: white;
+            border-color: black;
+          }
         }
       }
     }
