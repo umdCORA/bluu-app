@@ -138,17 +138,26 @@ class EventCalendar extends React.Component {
 
   handleSelect = ({ start, end }) => {
     const title = window.prompt('new event name')
-    if (title)
-      this.setState({
-        events: [
-          ...this.state.events,
-          {
-            title,
-            start,
-            end,
-          },
-        ],
-      })
+    if (!title) return;
+
+    const attendees = window.prompt('attendees (comma separated list)')
+    if (!attendees) return;
+
+    const type = window.prompt('type (in-person or cpr-simulation)')
+    if (!type) return;
+
+    this.setState({
+      events: [
+        ...this.state.events,
+        {
+          title,
+          start,
+          end,
+          attendees: attendees.split(','),
+          class: type,
+        },
+      ],
+    })
   }
 
   handleClick = (event) => {
