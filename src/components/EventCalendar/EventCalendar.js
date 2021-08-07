@@ -201,7 +201,7 @@ class EventCalendar extends React.Component {
           onSelectEvent={this.handleClick}
           onSelectSlot={this.handleSelect}
           eventPropGetter={this.eventDisplay}
-          style={{ height: '100%' }}
+          style={{ minHeight: '700px' }}
         />
       </>
     );
