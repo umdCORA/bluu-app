@@ -5,7 +5,7 @@ import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from 'react
 import { Button, Container, Row, Col } from 'reactstrap';
 // import { Translator, Translate } from 'react-auto-translate';
 import CallReport from './components/CallReport/CallReport';
-// import EventCalendar from './components/EventCalendar/EventCalendar';
+import EventCalendar from './components/EventCalendar/EventCalendar';
 import { 
   DASHBOARD_PAGE,
   REPORT_PAGE,
@@ -46,6 +46,8 @@ class App extends React.Component {
     switch(currPage) {
       case REPORT_PAGE:
         return <CallReport/>
+      case CALENDAR_PAGE:
+        return <EventCalendar/>
       default:
         return <div> WIP </div>
     }

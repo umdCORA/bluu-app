@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import * as Locales from 'date-fns/locale';
 import format from 'date-fns/format';
@@ -6,6 +7,7 @@ import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './EventCalendar.scss';
 
 const locales = {
   "af": Locales.af,
@@ -81,56 +83,81 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 });
+
+const people = ['kevin', 'michael', 'anna', 'arden', 'jason'];
+
 // javascript indexes months 0-11
 const myEventsList = [
   {
-    title: 'My first event',
-    start: new Date(2021, 5, 22),
-    end: new Date(2021, 5, 28),
+    title: 'Testevent KM',
+    start: new Date(2021, 6, 22),
+    end: new Date(2021, 6, 28),
+    attendees: ['kevin', 'michael'],
+    class: 'cpr-simulation',
   },
   {
-    title: 'My second event',
+    title: 'Testevent KAZ',
     allDay: true,
-    start: new Date(2021, 5, 22),
-    end: new Date(2021, 5, 23),
+    start: new Date(2021, 6, 22),
+    end: new Date(2021, 6, 23),
+    attendees: ['kevin', 'anna', 'arden'],
+    class: 'cpr-simulation',
   },
   {
-    title: 'My third event',
+    title: 'Testevent MAJ',
     allDay: false,
-    start: new Date(2021, 5, 12, 8),
-    end: new Date(2021, 5, 12, 12),
+    start: new Date(2021, 6, 12, 8),
+    end: new Date(2021, 6, 12, 12),
+    attendees: ['michael', 'anna', 'jason'],
+    class: 'in-person',
   },
   {
-    title: 'special',
+    title: 'Testevent All',
     start: new Date(),
     end: new Date(),
+    attendees: ['kevin', 'michael', 'anna', 'arden', 'jason'],
+    class: 'cpr-simulation',
   },
   {
-    title: 'extra',
-    start: new Date(2021, 5, 18),
-    end: new Date(2021, 5, 18),
+    title: 'Testevent Z',
+    start: new Date(2021, 6, 18),
+    end: new Date(2021, 6, 18),
+    attendees: ['arden'],
+    class: 'in-person',
   },
 ];
 
 class EventCalendar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { events: myEventsList };
+    this.state = {
+      events: myEventsList,
+      selectedPeople: [],
+    };
   }
 
   handleSelect = ({ start, end }) => {
     const title = window.prompt('new event name')
-    if (title)
-      this.setState({
-        events: [
-          ...this.state.events,
-          {
-            title,
-            start,
-            end,
-          },
-        ],
-      })
+    if (!title) return;
+
+    const attendees = window.prompt('attendees (comma separated list)')
+    if (!attendees) return;
+
+    const type = window.prompt('type (in-person or cpr-simulation)')
+    if (!type) return;
+
+    this.setState({
+      events: [
+        ...this.state.events,
+        {
+          title,
+          start,
+          end,
+          attendees: attendees.split(','),
+          class: type,
+        },
+      ],
+    })
   }
 
   handleClick = (event) => {
@@ -139,17 +166,53 @@ class EventCalendar extends React.Component {
     }
   }
 
+  eventDisplay = (event, _start, _end, _isSelected) => {
+    if(event.attendees?.filter(val => this.state.selectedPeople.includes(val)).length)
+      return {className: event.class}
+    return {style: {display: 'none'}}
+  }
+
+  peopleSelect = (person, checked) => {
+    if(checked) {
+      this.setState({ selectedPeople: this.state.selectedPeople.concat(person) });
+    } else {
+      this.setState({ selectedPeople: this.state.selectedPeople.filter(val => val !== person) });
+    }
+  }
+
   render() {
     return(
-      <Calendar
-        selectable
-        localizer={localizer}
-        culture={this.props.currLanguageCode}
-        events={this.state.events}
-        onSelectEvent={this.handleClick}
-        onSelectSlot={this.handleSelect}
-        style={{ height: 500 }}
-      />
+      <>
+        <h1>Calendar</h1>
+        <Container fluid>
+          <Row>
+            <Col xs="auto">
+              <Row><h3>Trainings</h3></Row>
+              <Row><div class='box cpr-simulation'/>CPR Training Simulations</Row>
+              <Row><div class='box in-person'/>In-Person Trainings</Row>
+              <Row><h3>Meetings</h3></Row>
+              <Row><div class='box cpr-simulation'/>CPR Training Simulations</Row>
+              <Row><div class='box in-person'/>In-Person Trainings</Row>
+            </Col>
+            <Col>
+              <Row><h3>People</h3></Row>
+              <Form.Group>
+                {people.map(p => <Form.Check type="checkbox" label={p} onChange={e => this.peopleSelect(p, e.target.checked)} />)}
+              </Form.Group>
+            </Col>
+          </Row>
+        </Container>
+        <Calendar
+          selectable
+          localizer={localizer}
+          culture={this.props.currLanguageCode}
+          events={this.state.events}
+          onSelectEvent={this.handleClick}
+          onSelectSlot={this.handleSelect}
+          eventPropGetter={this.eventDisplay}
+          style={{ minHeight: '700px' }}
+        />
+      </>
     );
   }
 }
