@@ -27,7 +27,7 @@ class App extends React.Component {
       prevLanguageCode: 'en',   // previous selected language code (used by react-auto-translate library)
       currLanguageCode: 'en',   // current selected language code, defaults to English
       currLanguage: 'English',  // current selected language, defaults to English
-      currPage: DASHBOARD_PAGE,
+      currPage: REPORT_PAGE,
     };
   }
 
@@ -53,12 +53,81 @@ class App extends React.Component {
     }
   }
 
+  renderSidebar = () => {
+    const { currPage } = this.state;
+    return (
+        <ProSidebar>
+          <SidebarHeader>
+            <span>Code Bluu</span>
+            <img src={bluuLogo} width="90" height="auto"/>
+          </SidebarHeader>
+          <SidebarContent>
+            <Menu iconShape="square">
+              <MenuItem 
+                active={currPage===DASHBOARD_PAGE}
+                onClick={() => this.setState({currPage: DASHBOARD_PAGE})}
+              > 
+                Dashboard 
+              </MenuItem>
+              <MenuItem
+                active={currPage === REPORT_PAGE}
+                onClick={() => this.setState({currPage: REPORT_PAGE})}
+              >
+                Make a Report
+              </MenuItem>
+              <MenuItem
+                active={currPage === TRAINING_PAGE}
+                onClick={() => this.setState({currPage: TRAINING_PAGE})}
+              >
+                Training
+              </MenuItem>
+              <MenuItem 
+                active={currPage === CALENDAR_PAGE}
+                onClick={() => this.setState({currPage: CALENDAR_PAGE})}
+              > 
+                Calendar
+              </MenuItem>
+              <MenuItem
+                active={currPage === CELEBRATION_PAGE}
+                onClick={() => this.setState({currPage: CELEBRATION_PAGE})}
+              >
+                Celebration Board
+              </MenuItem>
+              <MenuItem
+                active={currPage === STAFF_PAGE}
+                onClick={() => this.setState({currPage: STAFF_PAGE})}
+              >
+                Staff 
+              </MenuItem>
+              <MenuItem
+                active={currPage === TCPR_PAGE}
+                onClick={() => this.setState({currPage: TCPR_PAGE})}
+              > 
+                tCPR 
+              </MenuItem>
+              <MenuItem
+                active={currPage === AED_PAGE}
+                onClick={() => this.setState({currPage: AED_PAGE})}
+              > 
+                AED Locator 
+              </MenuItem>
+              <MenuItem
+                active={currPage === SETTINGS_PAGE}
+                onClick={() => this.setState({currPage: SETTINGS_PAGE})}
+              >
+                Settings
+              </MenuItem>
+            </Menu>
+          </SidebarContent>
+          </ProSidebar>
+    );
+  };
+
   render() {
     const {
       prevLanguageCode,
       currLanguageCode,
       currLanguage,
-      currPage,
     } = this.state;
 
     // all ISO-638-1 languages in their native language. Parsing below
@@ -82,70 +151,7 @@ class App extends React.Component {
     return (
       <Container className="App" fluid>
         <Row className="app-row">
-          <ProSidebar>
-            <SidebarHeader>
-              <span>Code Bluu</span>
-              <img src={bluuLogo} width="90" height="auto"/>
-            </SidebarHeader>
-            <SidebarContent>
-              <Menu iconShape="square">
-                <MenuItem 
-                  active={currPage===DASHBOARD_PAGE}
-                  onClick={() => this.setState({currPage: DASHBOARD_PAGE})}
-                > 
-                  Dashboard 
-                </MenuItem>
-                <MenuItem
-                  active={currPage === REPORT_PAGE}
-                  onClick={() => this.setState({currPage: REPORT_PAGE})}
-                >
-                  Make a Report
-                </MenuItem>
-                <MenuItem
-                  active={currPage === TRAINING_PAGE}
-                  onClick={() => this.setState({currPage: TRAINING_PAGE})}
-                >
-                  Training
-                </MenuItem>
-                <MenuItem 
-                  active={currPage === CALENDAR_PAGE}
-                  onClick={() => this.setState({currPage: CALENDAR_PAGE})}
-                > 
-                  Calendar
-                </MenuItem>
-                <MenuItem
-                  active={currPage === CELEBRATION_PAGE}
-                  onClick={() => this.setState({currPage: CELEBRATION_PAGE})}
-                >
-                  Celebration Board
-                </MenuItem>
-                <MenuItem
-                  active={currPage === STAFF_PAGE}
-                  onClick={() => this.setState({currPage: STAFF_PAGE})}
-                >
-                  Staff 
-                </MenuItem>
-                <MenuItem
-                  active={currPage === TCPR_PAGE}
-                  onClick={() => this.setState({currPage: TCPR_PAGE})}
-                > 
-                  tCPR 
-                </MenuItem>
-                <MenuItem
-                  active={currPage === AED_PAGE}
-                  onClick={() => this.setState({currPage: AED_PAGE})}
-                > 
-                  AED Locator 
-                </MenuItem>
-                <MenuItem
-                  active={currPage === SETTINGS_PAGE}
-                  onClick={() => this.setState({currPage: SETTINGS_PAGE})}
-                >
-                  Settings
-                </MenuItem>
-              </Menu>
-            </SidebarContent>
-            </ProSidebar>
+          {this.renderSidebar()}
           <Col className="content">
             {this.renderContent()}
           </Col>
@@ -176,7 +182,6 @@ class App extends React.Component {
             <Translate>Hello world! Current app implementation is testing translation features. Click the dropdown to select a supported language.</Translate>
           </div>
         </Translator>
-<<<<<<< HEAD
         */}
       {/*<EventCalendar currLanguageCode={currLanguageCode} /> */}
       </Container>
@@ -185,12 +190,6 @@ class App extends React.Component {
 }
 
 const ConnectedApp = connect(state => ({
-  workerName: state.workerName,
-  inputDate: state.inputDate,
-  startTime: state.startTime,
-  endTime: state.endTime,
-  callerLocation: state.callerLocation,
-  emsDispatched: state.emsDispatched,
 }))(App);
 
 export default ConnectedApp;

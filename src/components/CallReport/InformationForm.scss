@@ -1,33 +1,23 @@
 .InformationForm {
-  .time-container {
-    .time-flex-input {
-      display: flex;
-      flex-direction: row;
+  height: 100%;
+  overflow-y: auto;
 
-      .now-time-button {
-        margin-left: 5px;
-        background-color: #B4DCF2; 
-        color: black;
-      }
+  .information-form {
+    height: 0px; // required so form doesn't bleed across divs
 
-      .now-time-button:active {
-        background-color: #B4DCF2; 
-        color: black;
-      }
-    }
-  }
-
-  .caller-information {
-    background-color: #7FC7EF;
     padding: 10px;
     .phone-number-flex-input {
       display: flex;
       flex-direction: row;
 
       .phone-text-input {
-        width: 100px;
+        width: 80px;
         margin-right: 10px;
       }
+    }
+
+    #notes {
+      height: 100px;
     }
   }
 }

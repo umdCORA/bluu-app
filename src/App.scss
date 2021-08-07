@@ -6,9 +6,18 @@ $highlight-color: black;
 
 .App {
   height: 100%;
+  width: 100%;
+  display: flex;
+
   .app-row {
     height: 100%;
+    width: 100%;
+    display: flex;
+
     .pro-sidebar-layout {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       .pro-sidebar-header {
         padding-left: 10px;
         padding-top: 10px;
@@ -17,6 +26,7 @@ $highlight-color: black;
         font-size: 30px;
         font-weight: bold;
       }
+
       .pro-sidebar-content {
         .pro-menu {
           padding-right: 50px;
@@ -27,10 +37,12 @@ $highlight-color: black;
         }
       }
     }
+
     .content {
-      background-color: #F4F4F4;
+      height: 100%;
+      display: flex;
       padding-top: 40px;
+      padding-bottom: 20px;
     }
   }
 }
-
