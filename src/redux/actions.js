@@ -1,6 +1,8 @@
 import { createAction } from 'redux-actions';
 
 export const SET_ACCOUNT_TYPE = 'SET_ACCOUNT_TYPE';
+
+// InformationForm variables
 export const SET_CALLER_PHONE_NUMBER = 'SET_CALLER_PHONE_NUMBER';
 export const SET_CALLER_LOCATION = 'SET_CALLER_LOCATION';
 export const SET_EMS_DISPATCHED = 'SET_EMS_DISPATCHED';
@@ -23,3 +25,18 @@ export const setVictimAge = createAction(SET_VICTIM_AGE);
 export const setIsVictimBreathing = createAction(SET_IS_VICTIM_BREATHING);
 export const setVictimBreathingDescription = createAction(SET_VICTIM_BREATHING_DESCRIPTION);
 export const setIsVictimChestRising = createAction(SET_IS_VICTIM_CHEST_RISING);
+
+// PatientInformationForm variables
+export const SET_PATIENT_NAME = 'SET_PATIENT_NAME';
+export const SET_PATIENT_OUTCOME = 'SET_PATIENT_OUTCOME';
+export const SET_PATIENT_INTERESTED_IN_INTERVIEW = 'SET_PATIENT_INTERESTED_IN_INTERVIEW';
+export const SET_PATIENT_PREFERRED_CONTACT_METHOD = 'SET_PATIENT_PREFERRED_CONTACT_METHOD';
+export const SET_PATIENT_INFORMATION_NOTES = 'SET_PATIENT_INFORMATION_NOTES';
+export const SET_ADMITTING_HOSPITAL = 'SET_ADMITTING_HOSPITAL';
+
+export const setPatientName = createAction(SET_PATIENT_NAME);
+export const setPatientOutcome = createAction(SET_PATIENT_OUTCOME);
+export const setPatientInterestedInInterview = createAction(SET_PATIENT_INTERESTED_IN_INTERVIEW);
+export const setPatientPreferredContactMethod = createAction(SET_PATIENT_PREFERRED_CONTACT_METHOD);
+export const setPatientInformationNotes = createAction(SET_PATIENT_INFORMATION_NOTES);
+export const setAdmittingHospital = createAction(SET_ADMITTING_HOSPITAL);

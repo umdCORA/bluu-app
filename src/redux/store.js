@@ -12,6 +12,12 @@ import {
   isVictimBreathing,
   victimBreathingDescription,
   isVictimChestRising,
+  patientName,
+  patientOutcome,
+  patientInterestedInInterview,
+  patientPreferredContactMethod,
+  patientInformationNotes,
+  admittingHospital,
 } from './reducers.js';
 
 const rootReducer = combineReducers({
@@ -26,6 +32,12 @@ const rootReducer = combineReducers({
   isVictimBreathing,
   victimBreathingDescription,
   isVictimChestRising,
+  patientName,
+  patientOutcome,
+  patientInterestedInInterview,
+  patientPreferredContactMethod,
+  patientInformationNotes,
+  admittingHospital,
 });
 
 const store = createStore(

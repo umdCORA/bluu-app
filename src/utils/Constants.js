@@ -11,3 +11,13 @@ export const SETTINGS_PAGE = 'Settings';
 
 // account type constants
 export const OPERATOR_ACCT = 'Operator';
+export const CALL_CENTER_ADMIN_ACCT = 'Call Center Admin';
+export const QI_ADMIN_ACCT = 'QI Admin';
+export const EMS_ACCT = 'EMS';
+export const EMS_ADMIN_ACCT = 'EMS Admin';
+export const HOSPITAL_ACCT = 'Hospital'
+export const HOSPITAL_ADMIN_ACCT = 'Hospitcal Admin';
+
+// constants used for PatientInformationForm to determine patient's preferred method of contact
+export const PHONE = 'Phone';
+export const EMAIL = 'Email';
