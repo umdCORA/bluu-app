@@ -1,0 +1,21 @@
+.HospitalPatientInformationForm {
+  .patient-information-form {
+    #notes {
+      height: 100px;
+    }
+    .patient-interested-in-interview-form-group {
+      display: flex;
+      flex-direction: column;
+
+      .interview-button-group {
+        display: inline;
+        .interview-button {
+            margin-right: 5px;
+            color: black;
+            background-color: white;
+            border-color: black;
+        }
+      }
+    }
+  }
+}

@@ -3,14 +3,23 @@ import { connect } from 'react-redux'
 import {
   Button,
   Container, Row, Col,
+  Card, CardBody, CardTitle, CardSubtitle,
 } from 'reactstrap';
-
+import Metronome from '@kevinorriss/react-metronome'
 import {
   OPERATOR_ACCT,
+  CALL_CENTER_ADMIN_ACCT,
+  QI_ADMIN_ACCT,
+  EMS_ACCT,
+  EMS_ADMIN_ACCT,
+  HOSPITAL_ACCT,
+  HOSPITAL_ADMIN_ACCT,
 } from '../../utils/Constants';
 
 import CallTools from './CallTools';
 import InformationForm from './InformationForm';
+import HospitalPatientInformationForm from './HospitalPatientInformationForm';
+import EmsPatientInformationForm from './EmsPatientInformationForm';
 import ProtocolForm from './ProtocolForm';
 import ReportLogs from './ReportLogs';
 import './CallReport.scss';
@@ -35,15 +44,47 @@ class CallReport extends React.Component {
     const { accountType } = this.props;
     switch(accountType) {
       case OPERATOR_ACCT:
+      case CALL_CENTER_ADMIN_ACCT:
         return (
           <Row className="report-row">
-          <Col>
-          <ProtocolForm/>
-          </Col>
-          <Col>
-          <CallTools/>
-          <InformationForm/>
-          </Col>
+            <Col>
+              <ProtocolForm/>
+            </Col>
+            <Col>
+              <CallTools/>
+              <InformationForm/>
+            </Col>
+          </Row>
+        );
+      case HOSPITAL_ACCT:
+      case HOSPITAL_ADMIN_ACCT:
+        return (
+          <Row className="report-row">
+            <Col>
+              <ReportLogs/>
+            </Col>
+            <Col>
+              <HospitalPatientInformationForm/>
+            </Col>
+          </Row>
+        );
+      case EMS_ACCT:
+      case EMS_ADMIN_ACCT:
+        return (
+          <Row className="report-row">
+            <Col>
+              <ReportLogs/>
+            </Col>
+            <Col>
+              <Card className="CallTools">
+                <CardBody>
+                  <CardTitle tag="h5"> Tools </CardTitle>
+                  <CardSubtitle> Metronome </CardSubtitle>
+                  <Metronome/>
+                </CardBody>
+              </Card>
+              <EmsPatientInformationForm/>
+            </Col>
           </Row>
         );
       default:

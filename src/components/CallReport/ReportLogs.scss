@@ -1,4 +1,7 @@
 .ReportLogs {
   height: 100%;
   overflow-y: auto;
+  .log-row {
+    line-height: 2;
+  }
 }
