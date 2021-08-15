@@ -4,23 +4,43 @@ import {
   Button, ButtonGroup,
   Card, CardBody, CardTitle,
   Container, Row, Col,
-  Form, FormGroup, RadioGroup, Label, Input,
+  Form, Label, Input,
   Collapse
 } from 'reactstrap';
+import {
+  Radio, RadioGroup,
+  FormControlLabel, FormControl, FormLabel,
+  Accordion, AccordionSummary, AccordionDetails,
+  Typography,
+  makeStyles
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './TrainingModule.scss';
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { setAnswer1 } from '../../redux/actions';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+    fontStyle: theme.typography.fontStyle
+  }
+}));
+
 const TrainingModule = () => {
   const [name, setName] = useState("Answer 1");
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
+  const [value, setValue] = useState('female');
 
   const onValChange = (e) => setName(e.target.value);
+  const handleChange = (e) => setValue(e.target.value);
+
+  const classes = useStyles();
 
   return (
     <Container className="training-module">
@@ -32,26 +52,80 @@ const TrainingModule = () => {
           <Card className="training">
             <CardTitle tag="h5"> Training </CardTitle>
             <CardBody>
-              <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}> Question 1</Button>
-              <Collapse isOpen={isOpen}>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>Greetings</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {/* <Typography>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                    sit amet blandit leo lobortis eget.
+                  </Typography> */}
+                  <FormControl component="fieldset">
+                    <FormLabel component="legend">Sample Question 1</FormLabel>
+                    <RadioGroup aria-label="question-1" name="question-1-answer" value={value} onChange={handleChange}>
+                      <FormControlLabel value="question-1-answer-1" control={<Radio />} label="Answer 1" />
+                      <FormControlLabel value="question-1-answer-2" control={<Radio />} label="Answer 2" />
+                      <FormControlLabel value="question-1-answer-3" control={<Radio />} label="Answer 3" />
+                      <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+                    </RadioGroup>
+                  </FormControl>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel2a-content"
+                  id="panel2a-header"
+                >
+                  <Typography className={classes.heading}>Identifying CPR</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <FormControl component="fieldset">
+                    <FormLabel component="legend">Sample Question 2</FormLabel>
+                    <RadioGroup aria-label="question-2" name="question-2-answer" value={value} onChange={handleChange}>
+                      <FormControlLabel value="question-2-answer-1" control={<Radio />} label="Answer 1" />
+                      <FormControlLabel value="question-2-answer-2" control={<Radio />} label="Answer 2" />
+                      <FormControlLabel value="question-2-answer-3" control={<Radio />} label="Answer 3" />
+                      <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+                    </RadioGroup>
+                  </FormControl>
+                </AccordionDetails>
+              </Accordion>
+              <Accordion disabled>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel3a-content"
+                  id="panel3a-header"
+                >
+                  <Typography className={classes.heading}>CPR Instructions</Typography>
+                </AccordionSummary>
+              </Accordion>
+              <Accordion disabled>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel4a-content"
+                  id="panel4a-header"
+                >
+                  <Typography className={classes.heading}>Continuing CPR</Typography>
+                </AccordionSummary>
+              </Accordion>
+              <Accordion disabled>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel5a-content"
+                  id="panel5a-header"
+                >
+                  <Typography className={classes.heading}>CPR Tools</Typography>
+                </AccordionSummary>
+              </Accordion>
+              {/* <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}> Question 1</Button> */}
+              {/* <Collapse isOpen={isOpen}>
                 <Form>
-                  {/* <FormGroup>
-                    <Label for="question1"> Question 1? </Label>
-                    <ToggleButtonGroup
-                      name="question1-button-group"
-                      className="question1-button-group"
-                      defaultValue={answer1}
-                    >
-                      <ToggleButton
-                        className="answer1-choice1"
-                        value={true}
-                        onClick={() => dispatch(setAnswer1(true))}
-                      >
-                        ABCD
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-                    <input type="radio" value="option1" checked={true} />
-                  </FormGroup> */}
                   <label>
                     <input
                       type="radio"
@@ -79,21 +153,26 @@ const TrainingModule = () => {
                     <span>Answer 3</span>
                   </label>
                 </Form>
-              </Collapse>
+              </Collapse> */}
 
             </CardBody>
           </Card>
         </Col>
         <Col className="training-audio">
           <AudioPlayer className="training-audio"
-            src="LMAO.mp3"
-            type="audio/mpeg"
+            src="16-Coaching.wav"
+            type="audio/wav"
             showJumpControls={false}
-            volume={0.1}
+            volume={1.0}
 
             onPlay={e => console.log("onPlay")}
 
           />
+          <Card>
+            <CardBody>
+              Transcript
+            </CardBody>
+        </Card>
         </Col>
       </Row>
     </Container >
